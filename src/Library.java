@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class Book {
@@ -35,6 +37,14 @@ class Book {
         isAvailable = true; 
     }
 
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author; 
+    }
 
    
 }
@@ -77,6 +87,17 @@ class Library {
             throw new IllegalArgumentException("Book was not borrowed or does not exist");
         }
         book.returnBook(); 
+    }
+
+
+       public List<Book> displayAvailableBooks() {
+        List<Book> availableBooks = new ArrayList<>();
+        for (Book book : books.values()) {
+            if (book.isAvailable()) {
+                availableBooks.add(book);
+            }
+        }
+        return availableBooks; 
     }
 
     
