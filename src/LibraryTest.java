@@ -2,6 +2,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 public class LibraryTest {
 
     private Library library;
@@ -66,4 +68,23 @@ public class LibraryTest {
             assertEquals("Book was not borrowed or does not exist", e.getMessage());
         }
     }
+
+    @Test
+    public void displayAvailableBooksAfterBorrowing() {
+        // Add two books to the library
+        library.addBook("978-1-2345-6789-0", "XYZ", "ABC", 2021);
+        library.addBook("978-0-1234-5678-9", "Another Book", "DEF", 2020);
+        
+        // Borrow one book
+        library.borrowBook("978-1-2345-6789-0"); 
+        
+        // Check available books
+        List<Book> availableBooks = library.displayAvailableBooks();
+        assertEquals(1, availableBooks.size()); // Only one book should be available
+        
+        // Verify the title of the available book
+        assertEquals("Another Book", availableBooks.get(0).getTitle()); 
+    }
+    
+
 }
