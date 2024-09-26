@@ -31,6 +31,7 @@ public class LibraryTest {
     }
     @Test
     public void borrowBookSuccessfully() {
+        library.addBook("978-1-2345-6789-0", "Another Book", "ABC", 2022);
         library.borrowBook("978-1-2345-6789-0");
         // After borrowing, the book should not be available
         assertFalse(library.getBook("978-1-2345-6789-0").isAvailable());
@@ -38,6 +39,7 @@ public class LibraryTest {
 
     @Test
     public void borrowUnavailableBookShouldFail() {
+        library.addBook("978-1-2345-6789-0", "Another Book", "ABC", 2022);
         library.borrowBook("978-1-2345-6789-0"); // Borrow first time
         try {
             library.borrowBook("978-1-2345-6789-0"); // Try to borrow again
