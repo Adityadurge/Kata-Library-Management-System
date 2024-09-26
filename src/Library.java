@@ -90,16 +90,25 @@ class Library {
     }
 
 
-       public List<Book> displayAvailableBooks() {
+    public List<Book> displayAvailableBooks() {
         List<Book> availableBooks = new ArrayList<>();
         for (Book book : books.values()) {
             if (book.isAvailable()) {
                 availableBooks.add(book);
             }
         }
+    
+        if (availableBooks.isEmpty()) {
+            System.out.println("No books are available.");
+        } else {
+            System.out.println("Available Books:");
+            for (Book book : availableBooks) {
+                System.out.println("ISBN: " + book.getIsbn() + ", Title: " + book.getTitle() + ", Author: " + book.getAuthor());
+            }
+        }
+    
         return availableBooks; 
     }
-
     
     
 }

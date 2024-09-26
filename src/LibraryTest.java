@@ -69,6 +69,8 @@ public class LibraryTest {
         }
     }
 
+
+
     @Test
     public void displayAvailableBooksAfterBorrowing() {
         // Add two books to the library
@@ -78,13 +80,18 @@ public class LibraryTest {
         // Borrow one book
         library.borrowBook("978-1-2345-6789-0"); 
         
-        // Check available books
+       
+        System.out.println("Available Books after borrowing:");
+        library.displayAvailableBooks(); // This will print the available books
+
+       
         List<Book> availableBooks = library.displayAvailableBooks();
+        
         assertEquals(1, availableBooks.size()); // Only one book should be available
         
-        // Verify the title of the available book
         assertEquals("Another Book", availableBooks.get(0).getTitle()); 
     }
+
     
 
 }
