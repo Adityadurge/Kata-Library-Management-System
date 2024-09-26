@@ -48,4 +48,22 @@ public class LibraryTest {
             assertEquals("Book is not available for borrowing", e.getMessage());
         }
     }
+
+    @Test
+    public void returnBookSuccessfully() {
+        library.addBook("978-1-2345-6789-0", "XYZ", "ABC", 2021);
+        library.borrowBook("978-1-2345-6789-0"); // Borrow the book
+        library.returnBook("978-1-2345-6789-0"); // Return the book
+        assertTrue(library.getBook("978-1-2345-6789-0").isAvailable()); // Check if the book is available again
+    }
+
+    @Test
+    public void returnBookThatWasNotBorrowedShouldFail() {
+        try {
+            library.returnBook("978-1-2345-6789-0"); // Try to return it without borrowing
+            fail("Should throw an error when trying to return a book that was not borrowed");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Book was not borrowed or does not exist", e.getMessage());
+        }
+    }
 }

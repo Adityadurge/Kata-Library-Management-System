@@ -30,6 +30,10 @@ class Book {
     public void borrow() {
         isAvailable = false;
     }
+
+    public void returnBook() {
+        isAvailable = true; 
+    }
 }
 
 class Library {
@@ -63,5 +67,15 @@ class Library {
     public Book getBook(String isbn) {
         return books.get(isbn);
     }
+    // return book functionality
+    public void returnBook(String isbn) {
+        Book book = books.get(isbn);
+        if (book == null || book.isAvailable()) {
+            throw new IllegalArgumentException("Book was not borrowed or does not exist");
+        }
+        book.returnBook(); 
+    }
+
+    
     
 }
