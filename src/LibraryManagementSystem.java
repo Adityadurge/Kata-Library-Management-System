@@ -34,21 +34,33 @@ public class LibraryManagementSystem {
                     System.out.print("Enter Year: ");
                     int year = scanner.nextInt();
                     library.addBook(isbn, title, author, year);
+                    System.out.println("Book added successfully!");  // Success message
                     break;
 
                 case 2:
                     System.out.print("Enter ISBN to borrow: ");
                     String borrowIsbn = scanner.nextLine();
-                    library.borrowBook(borrowIsbn);
+                    try {
+                        library.borrowBook(borrowIsbn);
+                        System.out.println("Book borrowed successfully!");  // Success message
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());  // Display error message
+                    }
                     break;
 
                 case 3:
                     System.out.print("Enter ISBN to return: ");
                     String returnIsbn = scanner.nextLine();
-                    library.returnBook(returnIsbn);
+                    try {
+                        library.returnBook(returnIsbn);
+                        System.out.println("Book returned successfully!");  // Success message
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());  // Display error message
+                    }
                     break;
 
                 case 4:
+                    System.out.println("Available Books:");
                     library.displayAvailableBooks();
                     break;
 
